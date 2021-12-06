@@ -19,9 +19,11 @@ def main():
     if hasattr(day_module, main_name):
 
         main_fn = getattr(day_module, main_name)
+        main_fn_comments = inspect.getcomments(main_fn)
 
         print("*" * 25)
-        print(inspect.getcomments(main_fn).strip())
+        if bool(main_fn_comments):
+            print(main_fn_comments.strip())
         print("*" * 25)
         print(f"Answer: {main_fn()}")
     else:
