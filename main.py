@@ -2,6 +2,8 @@ import argparse
 import importlib
 import inspect
 
+from helpers.data import read_data
+
 
 def main():
     parser = argparse.ArgumentParser(description='Advent of code 2021 project.')
@@ -25,7 +27,10 @@ def main():
         if bool(main_fn_comments):
             print(main_fn_comments.strip())
         print("*" * 25)
-        print(f"Answer: {main_fn()}")
+
+        data, sample = read_data(int(args.day[0]))
+
+        print(f"Answer: {main_fn(data, sample)}")
     else:
         raise RuntimeError("Day module does not have a `main` entry point function defined.")
 
